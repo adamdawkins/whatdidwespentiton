@@ -1,0 +1,27 @@
+template(name="transactions")
+  h1 Transactions
+  .ui.segment
+    table.ui.compact.celled.definition.table
+      thead: tr
+        th
+        th Date
+        th Description
+        th In/Out
+      tbody
+        each transactions
+          +transaction_row
+      tfoot.full-width: tr
+        th
+        th(colspan="3")
+          .ui.small.right.floated.primary.button Label Transactions
+
+
+template(name="transaction_row")
+  tr
+    td.collapsing
+      .ui.toggle.checkbox
+        input(type="checkbox" name="{{_id}}")
+        label(for="{{_id}}")
+    td= short_date
+    td= description
+    td= amount

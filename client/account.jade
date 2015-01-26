@@ -1,0 +1,33 @@
+template(name="AccountShow")
+  with account
+    h1= name
+    +account_csv_form
+    .ui.segment
+      .ui.header Balance
+      +balance_chart
+    .ui.segment
+      h3.ui.header Balances
+      table.ui.table
+        thead
+          tr
+            th Date
+            th Balance
+        tbody
+          each balances
+            tr
+              td= date
+              td= amount
+
+template(name="account_csv_form")
+  .ui.segment
+    form.ui.form
+      h3.ui.header Upload Statment CSV
+      .field
+        label CSV Text
+        textarea#csv
+      button.ui.primary.button(type="submit") Upload CSV
+
+
+template(name="balance_chart")
+  canvas#balance_chart(height="400px" width="800px")
+

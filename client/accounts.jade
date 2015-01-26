@@ -1,0 +1,7 @@
+template(name="accounts")
+  h1 Accounts
+
+  .ui.vertical.menu
+    each accounts
+      a.item(href="{{pathFor 'account.show'}}")= name
+    

@@ -1,0 +1,33 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-platform
+autopublish
+insecure
+
+# languages
+coffeescript
+mquandalle:jade
+less
+
+# meteor basics
+iron:router
+kaptron:minimongoid
+
+#helpers
+andylash:money
+underscore
+joshowens:simple-form
+
+#frameworks
+nooitaf:semantic-ui
+harrison:papa-parse
+harrison:babyparse
+chrismbeckett:toastr
+momentjs:moment
+lepozepo:accounting
+alamont:chartjs
+jquery
