@@ -10,12 +10,45 @@ Template['transactions'].helpers
     Session.get 'selected_transactions_count'
   selected_transaction_ids: ->
     Session.get 'selected_transaction_ids'
+  transactions: ->
+    TransactionSearch.getData(
+      transform: (match_text, reg_exp) ->
+        return match_text.replace(reg_exp, "<b>$&</b>")
+      sort: date: -1
+    )
+  is_loading: ->
+    return TransactionSearch.getStatus().loading
+      
+
+Template['transactions'].events
+  'keyup #search_box': _.throttle(((event) ->
+    text = $(event.target).val().trim()
+    console.log "searching: #{text}"
+    TransactionSearch.search text
+    return
+  ), 200)
+
+  'click #select_all_button': (event, template) ->
+    event.preventDefault()
+    template.$(':checkbox').prop('checked', true).change() 
+  'click #deselect_all_button': (event, template) ->
+    event.preventDefault()
+    template.$(':checkbox').prop('checked', false).change()
+
 
 Template['transaction_row'].rendered = ->
   $('.ui.checkbox').checkbox()
 
+Template['transaction_row'].helpers
+  amount: ->
+    accounting.formatMoney(@money.getAmount(), "£")
+
+  short_date: ->
+    moment(@date).format('DD/MM/YY')
+
 Template['transaction_row'].events
   'change input[type="checkbox"]': (event, transaction) ->
+    console.log "CHANGE"
     $checkbox = $(event.target)
     selected_transaction_ids = Session.get 'selected_transaction_ids'
     

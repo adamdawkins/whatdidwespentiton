@@ -15,5 +15,4 @@ Router.route('accounts/:_id/transactions',
     )
 
     account: Account.first(@params._id)
-    transactions: transactions
 )

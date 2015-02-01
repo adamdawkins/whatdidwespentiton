@@ -3,6 +3,18 @@ template(name="transactions")
       .three.wide.column
       .ten.wide.column
         h1 Transactions
+        .ui.top.attached.segment
+          .ui.grid
+            .two.column.row
+              .column
+                .ui.search
+                  .ui.icon.input
+                    input#search_box.prompt(type="text" placeholder="Search by Description")
+                    i.search.icon
+              .column
+                .ui.buttons
+                  .ui.button#deselect_all_button Deselect All
+                  .ui.positive.button#select_all_button Select All
         .ui.segment
           .left.ui.rail
               .ui.sticky.segment
@@ -37,5 +49,5 @@ template(name="transaction_row")
         input(type="checkbox" name="{{_id}}")
         label(for="{{_id}}")
     td= short_date
-    td= description
+    td {{{description}}}
     td= amount
