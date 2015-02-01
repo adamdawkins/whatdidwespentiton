@@ -1,20 +1,34 @@
 template(name="transactions")
-  h1 Transactions
-  .ui.segment
-    table.ui.compact.celled.definition.table
-      thead: tr
-        th
-        th Date
-        th Description
-        th In/Out
-      tbody
-        each transactions
-          +transaction_row
-      tfoot.full-width: tr
-        th
-        th(colspan="3")
-          .ui.small.right.floated.primary.button Label Transactions
+    .ui.grid
+      .three.wide.column
+      .ten.wide.column
+        h1 Transactions
+        .ui.segment
+          .left.ui.rail
+              .ui.sticky.segment
+                if selected_transaction_ids
+                  h3.ui.header
+                    | Label
+                    = selected_transactions_count
+                    | selected transactions
+                  .content
+                    form.ui.fluid.form.segment
+                      .field
+                        label(for="label_name") Label name:
+                        input#label_name(type="text")
+                      button.ui.submit.button(type="submit") Add label to transactions
 
+          .content#transactions_content(style="min-height:500px")
+            table.ui.compact.celled.definition.table
+              thead: tr
+                th
+                th Date
+                th Description
+                th In/Out
+              tbody
+                each transactions
+                  +transaction_row
+      .three.wide.column
 
 template(name="transaction_row")
   tr
